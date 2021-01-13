@@ -1,0 +1,33 @@
+﻿
+<h3>The Shoppies</h3>
+<div class="row content-boarder">
+    <div class="col-md-12">
+        <p>Movie title</p>
+        <div class="search-bar-wrapper">
+            @using (Ajax.BeginForm("Search", "Home", new AjaxOptions
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "SearchResults",
+                InsertionMode = InsertionMode.Replace,
+                LoadingElementId = "loading-icon"
+            }))
+            {
+                <input type="search" name="searchTerm" id="searchTerm" class="search-bar" />
+                <input type="submit" name="submitButton" id="submitButton" value="&#128269" class="search-button" />
+                <img id="loading-icon" name="loading-icon" src="~/Images/icon-loading.gif" style="display:none" />
+            }
+
+        </div>
+        </div>
+</div>
+
+<div id="SearchResults" name="SearchResults"></div>
+
+
+
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/displayNominee.js"></script>
+}
+
+

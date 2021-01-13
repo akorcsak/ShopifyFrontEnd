@@ -1,0 +1,44 @@
+﻿@using ShopifyFrontEnd.Models
+@model Root
+
+
+<script>
+    var nominatedMovies = [];
+</script>
+
+<div class="row content-boarder" style="background-color:#E0E0E0">
+    <div class="col-md-6">
+        <div>
+            <h4>Results for <strong>"@ViewData["SearchTerm"]"</strong></h4>
+            @if (Model?.Search != null)
+            {
+                <ul>
+                    @foreach (var result in @Model?.Search)
+                    {
+                        <li>
+                            @result.Title (@result.Year)
+                            <button type="button" id="@result.Title@result.Year" onclick='Nominate("@result.Title", "@result.Year", nominatedMovies)'>
+                                Nominate
+                            </button>
+                        </li>
+                    }
+                </ul>
+
+            }
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div>
+            <h4>
+                Nominations (Maximum 5)
+            </h4>
+
+            <ul id="nominateTitleList">
+            </ul>
+            <div id="banner" class="alert alert-danger alert-dismissible" role="alert" style="display:none;">
+                Maximum number of Nominees has been achieved!
+            </div>
+        </div>
+    </div>
+</div>
